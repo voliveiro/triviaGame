@@ -10,10 +10,13 @@ const promise = $.ajax({
 
        promise.then(
        (data)=>{
-              console.log(typeof data.clues);
-              dataResource = data.clues
-              console.log (dataResource)
               
+              //the data we want is in data.clues 
+              dataResource = data.clues
+              // console.log (dataResource)
+              
+              //let's make sure dataResource contains only the data that is needed for the game. 
+
               for (item of dataResource) {
                      delete item["value"]
                      delete item["airdate"]
@@ -22,14 +25,29 @@ const promise = $.ajax({
                      delete item["invalid_count"]
               }
               
-              console.log(dataResource)
+              // console.log(dataResource)
+
+              //Create a function that selects a question-and-answer object from dataResource. Delete that object from dataResource once chosen to make sure the same question isn't selected again 
+
+              const selectObject = () => {
+                     //select a random object from the dataResource list 
+                     let selectedObject = dataResource[Math.floor(Math.random()* dataResource.length)]
+       
+                     // now delete selectedObject from dataResource 
+                     // console.log (dataResource.length)
+                     selectedObjectIndexNo = dataResource.indexOf(selectedObject) 
+                     dataResource.splice(selectedObjectIndexNo,1)
+                     // console.log (dataResource.length) Length reduces by one. 
+       
+                     return selectedObject
+              }
+
               $('.display-results').text(JSON.stringify(dataResource))
        },
        ()=>{
               console.log('bad request');
        }
        );
-
 
 })
 
