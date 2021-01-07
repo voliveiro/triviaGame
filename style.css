@@ -10,6 +10,12 @@ h1 {
     font-size: 3rem; 
 }
 
+h2 {
+    color: white; 
+    text-align: center; 
+    font-size: 2.5rem; 
+}
+
 main {
     text-align: center; 
 }
@@ -24,8 +30,13 @@ main {
 
 .question-text {
     font-size: 1.5rem; 
+ 
+    
 }
 
 .answers-text {
     font-size: 1.2rem; 
+    cursor: pointer;
+    padding: 10px 0 10px 0; 
+     
 }

@@ -1,4 +1,4 @@
-$(() => {
+ $(() => {
 
 console.log ("app.js is linked")
 
@@ -13,6 +13,8 @@ const promise = $.ajax({
               
               //the data we want is in data.clues 
               dataResource=data["results"]
+              console.log (typeof dataResource)
+              console.log (dataResource[0])
 
               let dataResourceMCQ = []
 
@@ -24,10 +26,20 @@ const promise = $.ajax({
               }
               //select 10 questions 
 
-              dataResourceMCQ = dataResource.slice(0,10)
+              let dataResourceMCQ_10qns = [ ]
 
-              for (let i=0; i<dataResourceMCQ.length; i++) {
-                     let item = dataResourceMCQ[i]
+              for (let i=0; i<10; i++) {
+                     //select a random Item from dataResourceMCQ
+                     randoItem = dataResourceMCQ[Math.floor(Math.random()*dataResourceMCQ.length)];
+                     dataResourceMCQ_10qns.push(randoItem);
+                     // remove the random Item from dataResourceMCQ to prevent duplicate questions
+                     let indexNo = dataResourceMCQ.indexOf(randoItem);
+                     dataResourceMCQ.splice(indexNo, 1)
+
+              }
+
+              for (let i=0; i<dataResourceMCQ_10qns.length; i++) {
+                     let item = dataResourceMCQ_10qns[i]
                      let question = item["question"]
                      let correctAnswer = item["correct_answer"]
                      let wrongAnswers = item["incorrect_answers"]
@@ -59,7 +71,7 @@ const promise = $.ajax({
                      }
 
                      //possibleAnswers is now an array of elements with all the possible answers
-                     console.log (possibleAnswers)
+                     // console.log (possibleAnswers)
 
                      //randomly display each element in possibleAnswers 
 
@@ -89,12 +101,54 @@ const promise = $.ajax({
 
               }
 
-              
-       
+              //visiually indicate if right or wrong answer has been clicked
 
-  
-              
+              let qnContainerNodes = document.querySelectorAll('.question-container')
 
+              let answerContainerArray=[]
+
+              for (let i=0; i<qnContainerNodes.length; i++){
+                    let answerSection=qnContainerNodes[i].querySelector('.answer-container');
+                    answerContainerArray.push(answerSection)
+              }
+
+              //highlight green if correct answer picked
+              
+              correctAnswerNumber=0
+
+              for (let i=0; i<answerContainerArray.length; i++) {
+                   answerContainerArray[i].querySelector('.correct').addEventListener('click', function() {
+                     answerContainerArray[i].querySelector('.correct').style.background="rgb(138, 250, 138)"; 
+                     correctAnswerNumber++
+                     console.log(correctAnswerNumber)
+                     document.querySelector('.score').innerHTML=correctAnswerNumber; 
+                     // remove all the wrong answers
+                     let wrongAnswersArray=answerContainerArray[i].querySelectorAll('.wrong'); 
+                     for (let k=0; k<wrongAnswersArray.length; k++){
+                            wrongAnswersArray[k].remove();
+                     }
+
+
+                   })
+                   
+              };
+
+              //highlight red if wrong answer is selected, and outline the right answer 
+
+              for (let i=0; i<answerContainerArray.length; i++) {
+                     let wrongAnswersArray = answerContainerArray[i].querySelectorAll('.wrong'); 
+                     for (let k=0; k<wrongAnswersArray.length; k++) {
+                            wrongAnswersArray[k].addEventListener('click', function() {
+                                   wrongAnswersArray[k].style.background="pink";
+                                   answerContainerArray[i].querySelector('.correct').style.border="2px solid rgb(13, 162, 13)"; 
+ 
+                                   
+                            });
+                     
+                     
+                     }};
+
+               
                
        },
        ()=>{
@@ -102,6 +156,7 @@ const promise = $.ajax({
        }
        );
 
+    
 })
 
  
