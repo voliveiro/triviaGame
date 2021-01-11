@@ -116,22 +116,13 @@ const promise = $.ajax({
                             
                             const newP = document.createElement('p'); 
                             newP.textContent=document.querySelector('.correct').textContent
-                            newP.style.background='rgb(138, 250, 138'
+                            newP.style.background='rgb(138, 250, 138)'
                             
                             let allPs = answerContainerArray[i].querySelectorAll('.answers-text')
                             for (let k=0; k<allPs.length; k++) {
                                    allPs[k].remove()
                             }
                             answerContainerArray[i].appendChild(newP)
-                            // answerContainerArray[i].querySelector('.correct').style.background="rgb(138, 250, 138)"; 
-                       
-                       
-                       // remove all the wrong answers
-                     //   let wrongAnswersArray=answerContainerArray[i].querySelectorAll('.wrong'); 
-                     //   for (let k=0; k<wrongAnswersArray.length; k++){
-                     //          wrongAnswersArray[k].remove();
-                     //   }
-  
   
                      })
                     
@@ -141,9 +132,23 @@ const promise = $.ajax({
               //higlight red if wrong answer picked 
 
               for (let i=0; i<answerContainerArray.length; i++) {
-                     let allAnswers = answerContainerArray[i].querySelectorAll('.answers-text')
-                     let allAnswersArray= Array.from(allAnswers)
+                     let allWrongAnswers = answerContainerArray[i].querySelectorAll('.wrong')
+                     for (let k=0; k<allWrongAnswers.length; k++) {
+                            allWrongAnswers[k].addEventListener('click', function() {
+                                   const newP = document.createElement('p'); 
+                                   newP.textContent=allWrongAnswers[k].textContent; 
+                                   newP.style.background='pink'
+                                   let allPs = answerContainerArray[i].querySelectorAll('.answers-text')
+                                   for (let k=0; k<allPs.length; k++) {
+                                          allPs[k].remove()
+                                   }
+                                   answerContainerArray[i].appendChild(newP)
+
+                            }); 
+
+                            
                      }
+              }
                      
 
                             
