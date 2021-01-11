@@ -11,23 +11,20 @@ const promise = $.ajax({
        promise.then(
        (data)=>{
               
-              //the data we want is in data.clues 
+              //accessing the required data
               dataResource=data["results"]
-              console.log (typeof dataResource)
-              console.log (dataResource[0])
 
+              //accessing only MCQ-type questions
               let dataResourceMCQ = []
-
               for (let i=0; i<dataResource.length; i++) {
                      let item =dataResource[i];
                      if (item["type"] == "multiple") {
                             dataResourceMCQ.push(item)
                      }
               }
+
               //select 10 questions 
-
               let dataResourceMCQ_10qns = [ ]
-
               for (let i=0; i<10; i++) {
                      //select a random Item from dataResourceMCQ
                      randoItem = dataResourceMCQ[Math.floor(Math.random()*dataResourceMCQ.length)];
@@ -35,7 +32,6 @@ const promise = $.ajax({
                      // remove the random Item from dataResourceMCQ to prevent duplicate questions
                      let indexNo = dataResourceMCQ.indexOf(randoItem);
                      dataResourceMCQ.splice(indexNo, 1)
-
               }
 
               for (let i=0; i<dataResourceMCQ_10qns.length; i++) {
@@ -49,33 +45,28 @@ const promise = $.ajax({
                      let questionDiv = $('<div>').addClass('question-container')
 
                      let answerDiv = $('<div>').addClass('answer-container')
+                     answerDiv.attr('id', `container${i}`)
 
                      //create element for the question and append it to the question-container
                      let questionP = $('<p>').addClass("question-text").attr('id', `qntext${i+1}`).text(question)
                      questionDiv.append(questionP)
 
-                     //create an Array to host the possble answers
+                     //make sure that the possible answers are randomly displayed. To do this, create an array to host all the possible answers. Then, shuffle the array and display the answers in turn. 
 
                      let possibleAnswers=[ ]
-
-                     //create element for the correct answer
-                     //push correctAnswerP to possibleAnswers
 
                      let correctAnswerP = $('<p>').addClass("answers-text correct").attr('id', `correct`).text(correctAnswer);
 
                      possibleAnswers.push(correctAnswerP)
 
-                     for (let item of wrongAnswers) {
-                            possibleAnswers.push($('<p>').addClass("answers-text wrong"). text(item))
+                     for (let i=0; i<wrongAnswers.length; i++) {
+                            let wrongAnswerP = $('<p>').addClass('answers-text wrong').attr('id', `wrong${i}`)
+                            wrongAnswerP.html(wrongAnswers[i])
+                            possibleAnswers.push(wrongAnswerP)
 
                      }
 
-                     //possibleAnswers is now an array of elements with all the possible answers
-                     // console.log (possibleAnswers)
-
-                     //randomly display each element in possibleAnswers 
-
-                     //first shuffle possibleAnswers
+                     //shuffling possibleAnswers
 
                      let currentIndex = possibleAnswers.length, temporaryValue, randomIndex;
                      
@@ -113,48 +104,59 @@ const promise = $.ajax({
               }
 
               //highlight green if correct answer picked
-              
+
               correctAnswerNumber=0
 
+              for (let i=0; i<answerContainerArray.length; i++) { 
+                    
+                     answerContainerArray[i].querySelector('.correct').addEventListener('click', function() {
+                            //increasing score
+                            correctAnswerNumber++
+                            document.querySelector('.score').innerHTML=correctAnswerNumber; 
+                            
+                            const newP = document.createElement('p'); 
+                            newP.textContent=document.querySelector('.correct').textContent
+                            newP.style.background='rgb(138, 250, 138'
+                            
+                            let allPs = answerContainerArray[i].querySelectorAll('.answers-text')
+                            for (let k=0; k<allPs.length; k++) {
+                                   allPs[k].remove()
+                            }
+                            answerContainerArray[i].appendChild(newP)
+                            // answerContainerArray[i].querySelector('.correct').style.background="rgb(138, 250, 138)"; 
+                       
+                       
+                       // remove all the wrong answers
+                     //   let wrongAnswersArray=answerContainerArray[i].querySelectorAll('.wrong'); 
+                     //   for (let k=0; k<wrongAnswersArray.length; k++){
+                     //          wrongAnswersArray[k].remove();
+                     //   }
+  
+  
+                     })
+                    
+                     
+                };
+
+              //higlight red if wrong answer picked 
+
               for (let i=0; i<answerContainerArray.length; i++) {
-                   answerContainerArray[i].querySelector('.correct').addEventListener('click', function() {
-                     answerContainerArray[i].querySelector('.correct').style.background="rgb(138, 250, 138)"; 
-                     correctAnswerNumber++
-                     console.log(correctAnswerNumber)
-                     document.querySelector('.score').innerHTML=correctAnswerNumber; 
-                     // remove all the wrong answers
-                     let wrongAnswersArray=answerContainerArray[i].querySelectorAll('.wrong'); 
-                     for (let k=0; k<wrongAnswersArray.length; k++){
-                            wrongAnswersArray[k].remove();
+                     let allAnswers = answerContainerArray[i].querySelectorAll('.answers-text')
+                     let allAnswersArray= Array.from(allAnswers)
                      }
-
-
-                   })
-                   
-              };
-
-              //highlight red if wrong answer is selected, and outline the right answer 
-
-              for (let i=0; i<answerContainerArray.length; i++) {
-                     let wrongAnswersArray = answerContainerArray[i].querySelectorAll('.wrong'); 
-                     for (let k=0; k<wrongAnswersArray.length; k++) {
-                            wrongAnswersArray[k].addEventListener('click', function() {
-                                   wrongAnswersArray[k].style.background="pink";
-                                   answerContainerArray[i].querySelector('.correct').style.border="2px solid rgb(13, 162, 13)"; 
- 
-                                   
-                            });
                      
-                     
-                     }};
 
+                            
+              
+
+              
+        
                
                
-       },
+       }),
        ()=>{
               console.log('bad request');
-       }
-       );
+       };
 
     
 })
