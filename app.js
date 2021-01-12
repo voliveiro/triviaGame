@@ -34,6 +34,8 @@ const promise = $.ajax({
                      dataResourceMCQ.splice(indexNo, 1)
               }
 
+              
+
               for (let i=0; i<dataResourceMCQ_10qns.length; i++) {
                      let item = dataResourceMCQ_10qns[i]
                      let question = item["question"]
@@ -43,6 +45,7 @@ const promise = $.ajax({
                      //create a container to hold each question and possible answers
 
                      let questionDiv = $('<div>').addClass('question-container')
+                     questionDiv.addClass('carousel-item')
 
                      let answerDiv = $('<div>').addClass('answer-container')
                      answerDiv.attr('id', `container${i}`)
@@ -90,7 +93,14 @@ const promise = $.ajax({
 
                      $('main').append(questionDiv)
 
+
               }
+
+              //give "active" class to first questionDiv 
+
+              document.querySelector('.question-container').classList.add("active")
+
+              
 
               //visiually indicate if right or wrong answer has been clicked
 
@@ -101,11 +111,18 @@ const promise = $.ajax({
               for (let i=0; i<qnContainerNodes.length; i++){
                     let answerSection=qnContainerNodes[i].querySelector('.answer-container');
                     answerContainerArray.push(answerSection)
+
               }
+
+              //to keep track of the number of questinos answered
+              let questionsAnswered = 0 
+
+              //to keep track of correct answers 
+              let correctAnswerNumber=0
 
               //highlight green if correct answer picked
 
-              correctAnswerNumber=0
+              
 
               for (let i=0; i<answerContainerArray.length; i++) { 
                     
@@ -123,6 +140,8 @@ const promise = $.ajax({
                                    allPs[k].remove()
                             }
                             answerContainerArray[i].appendChild(newP)
+                            questionsAnswered ++
+                            console.log (questionsAnswered)
   
                      })
                     
@@ -143,19 +162,26 @@ const promise = $.ajax({
                                           allPs[k].remove()
                                    }
                                    answerContainerArray[i].appendChild(newP)
+                                   questionsAnswered ++
+                                   console.log (questionsAnswered)
 
                             }); 
 
-                            
+                     }
+
+                     if (questionsAnswered = 10) {
+                            console.log ("condition triggered")
+                            const endMessage = $('<p>').addClass('end-message')
+                            endMessage.html(`Thank you for playing! You scored ${correctAnswerNumber} points!`)
+                            $('.final-message').append(endMessage)
+                            $('.final-message').css('visibility', 'visible')
                      }
               }
-                     
-
-                            
+       
               
-
-              
-        
+       
+       
+                
                
                
        }),
