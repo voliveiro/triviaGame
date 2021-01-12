@@ -47,6 +47,11 @@ const promise = $.ajax({
                      let questionDiv = $('<div>').addClass('question-container')
                      questionDiv.addClass('carousel-item')
 
+                     let questionNoDiv =$('<h4>').addClass('question-number')
+                     questionNoDiv.html(`Question ${i+1}`)
+
+                     questionDiv.append(questionNoDiv)
+
                      let answerDiv = $('<div>').addClass('answer-container')
                      answerDiv.attr('id', `container${i}`)
 
@@ -169,20 +174,20 @@ const promise = $.ajax({
 
                      }
 
-                     if (questionsAnswered = 10) {
+                     if (questionsAnswered == 10) {
                             console.log ("condition triggered")
                             const endMessage = $('<p>').addClass('end-message')
                             endMessage.html(`Thank you for playing! You scored ${correctAnswerNumber} points!`)
                             $('.final-message').append(endMessage)
                             $('.final-message').css('visibility', 'visible')
                      }
-              }
+
        
+              }
+
               
        
-       
-                
-               
+              
                
        }),
        ()=>{
