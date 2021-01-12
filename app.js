@@ -1,13 +1,14 @@
 $(() => {
 
+console.log ("app.js is linked")
+
+//to check how many questions have been answered 
+
+let questionsAnswered = 0
+
 $('.reset').on('click', ()=> {
        location.reload();
 })
-
-       
-
-console.log ("app.js is linked")
- 
 
 const triviaGame = () => {
        console.log ("game is on")
@@ -140,6 +141,7 @@ const triviaGame = () => {
                                           $('.carousel-control-next').hide();
                                           $('.final-message').append(endMessage);
                                           $('.final-message').css('visibility', 'visible'); 
+                                          $('#bar-top').hide(); 
                                            
                                    }
 
@@ -152,8 +154,7 @@ const triviaGame = () => {
                      //to keep track of correct answers 
                      let correctAnswerNumber=0
 
-                     //keep track of number of questions answered
-                     let questionsAnswered = 0
+                     
 
                      //highlight green if correct answer picked
 
@@ -164,7 +165,6 @@ const triviaGame = () => {
                             answerContainerArray[i].querySelector('.correct').addEventListener('click', function() {
                                    //increasing score
                                    correctAnswerNumber++
-                                   questionsAnswered ++ 
                                    console.log (questionsAnswered)
                                    document.querySelector('.score').innerHTML=correctAnswerNumber; 
                                    
@@ -177,6 +177,8 @@ const triviaGame = () => {
                                           allPs[k].remove()
                                    }
                                    answerContainerArray[i].appendChild(newP)
+                                   questionsAnswered ++
+                                   console.log (questionsAnswered, "questions answered")
                                    gameDone(); 
 
                             })
@@ -190,7 +192,6 @@ const triviaGame = () => {
                             let allWrongAnswers = answerContainerArray[i].querySelectorAll('.wrong')
                             for (let k=0; k<allWrongAnswers.length; k++) {
                                    allWrongAnswers[k].addEventListener('click', function() {
-                                          questionsAnswered ++ 
                                           console.log (questionsAnswered)
                                           const newP = document.createElement('p'); 
                                           newP.textContent=allWrongAnswers[k].textContent; 
@@ -200,6 +201,8 @@ const triviaGame = () => {
                                                  allPs[k].remove()
                                           }
                                           answerContainerArray[i].appendChild(newP)
+                                          questionsAnswered ++
+                                          console.log (questionsAnswered, "questions answered")
                                           gameDone(); 
 
                                    }); 
@@ -225,14 +228,19 @@ const triviaGame = () => {
 triviaGame(); 
 
 const endgame = () => {
-       $('main').hide();
-       $('.carousel-control-prev').hide(); 
-       $('.carousel-control-next').hide(); 
-       const score = $('.score').text(); 
-       const endMessage = $('<p>').addClass('end-message');
-       endMessage.html(`You've run out of time :(  <br> Thank you for playing! You scored ${score} points!`)
-       $('.final-message').append(endMessage);
-       $('.final-message').css('visibility', 'visible'); 
+       if (questionsAnswered!=10) {
+              $('main').hide();
+              $('.carousel-control-prev').hide(); 
+              $('.carousel-control-next').hide(); 
+              const score = $('.score').text(); 
+              const endMessage = $('<p>').addClass('end-message');
+              endMessage.html(`You've run out of time :(  <br> Thank you for playing! You scored ${score} points!`)
+              $('.final-message').append(endMessage);
+              $('.final-message').css('visibility', 'visible'); 
+       } else {
+              console.log ("Do nothing")
+       }
+       
 
 }
 
