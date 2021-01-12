@@ -1,23 +1,72 @@
 body {
-    background: #252422; 
+    background: #1E2749; 
     font-family: 'Lato', sans-serif;
+     
 }
 
 h1 {
-    color: white; 
+    color: #ffa9b1; 
     text-align: center; 
     font-family: 'Lobster', cursive;
     font-size: 3rem; 
+    margin-top: 20px; 
 }
 
 h2 {
-    color: white; 
+    color: #fac7cc; 
     text-align: center; 
     font-size: 2.5rem; 
 }
 
+  
+
+.progress-section { 
+    display: flex; 
+    justify-content: center;
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+
+}
+
+.bar-container {
+    width: 70%; 
+    margin-bottom: 20px; 
+}
+
+#bar-bottom {
+    margin: 0 auto; 
+    width: 70%; 
+    height: 20px; 
+    background: rgba(130, 127, 127, 0.3);
+    position: absolute; 
+}
+
+#bar-top { 
+    margin: 0 auto; 
+    height: 20px; 
+    background: #EF7A85; 
+    position: absolute; 
+    animation: linear; 
+    animation-name: progress;
+    animation-duration: 60s;
+}
+
+@keyframes progress {
+    from { width: 1%}
+    to   { width: 70%}
+}
+
+h4 {
+    font-size: 1.2rem; 
+    color: #34322f; 
+    text-decoration: underline; 
+    margin-bottom: 20px; 
+}
+
 main {
+    margin-top: 20px; 
     text-align: center; 
+
 }
 
 .question-container {
@@ -39,4 +88,19 @@ main {
     cursor: pointer;
     padding: 10px 0 10px 0; 
      
+}
+
+.final-message {
+    width: 70%; 
+    background: #fcfcfc; 
+    color: #252422; 
+    padding: 20px 20px 20px 20px;  
+    margin: 20px auto;  
+    visibility: hidden; 
+}
+.final-message p {
+    font-size: 1.5rem; 
+    padding: 10px 0 10px 0; 
+    display: flex; 
+    justify-content: center; 
 }
