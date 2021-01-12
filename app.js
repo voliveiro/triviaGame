@@ -1,5 +1,9 @@
 $(() => {
 
+$('.reset').on('click', ()=> {
+       location.reload();
+})
+
        
 
 console.log ("app.js is linked")
