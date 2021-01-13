@@ -12,6 +12,10 @@ h1 {
     margin-top: 20px; 
 }
 
+.reset {
+    text-align: center; 
+    margin-left: 400px; 
+}
 h2 {
     color: #fac7cc; 
     text-align: center; 
@@ -56,6 +60,8 @@ h2 {
     to   { width: 70%}
 }
 
+
+
 h4 {
     font-size: 1.2rem; 
     color: #34322f; 
@@ -89,6 +95,16 @@ main {
     padding: 10px 0 10px 0; 
      
 }
+
+@media only screen and (max-width: 600px) {
+    .answer-container p {
+      font-size: 1.2rem;
+      cursor: pointer; 
+      padding: 5px 0 5px 0; 
+      border: 2px solid yellow; 
+      margin-bottom: -2px; 
+    }
+  }
 
 .final-message {
     width: 70%; 
