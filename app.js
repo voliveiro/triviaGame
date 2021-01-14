@@ -15,6 +15,8 @@ $('.reset').on('click', ()=> {
 })
 
 const triviaGame = () => {
+
+       $('.play-game').off()
        console.log ("game is on")
        $('#bar-top').show()
         
