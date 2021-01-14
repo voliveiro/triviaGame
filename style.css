@@ -52,6 +52,7 @@ h2 {
     animation: linear; 
     animation-name: progress;
     animation-duration: 60s;
+    animation-delay: 1s; 
 }
 
 @keyframes progress {
