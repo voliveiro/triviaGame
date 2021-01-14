@@ -70,14 +70,14 @@ const triviaGame = () => {
                             answerDiv.attr('id', `container${i}`)
 
                             //create element for the question and append it to the question-container
-                            let questionP = $('<p>').addClass("question-text").attr('id', `qntext${i+1}`).text(question)
+                            let questionP = $('<p>').addClass("question-text").attr('id', `qntext${i+1}`).html(question)
                             questionDiv.append(questionP)
 
                             //make sure that the possible answers are randomly displayed. To do this, create an array to host all the possible answers. Then, shuffle the array and display the answers in turn. 
 
                             let possibleAnswers=[ ]
 
-                            let correctAnswerP = $('<p>').addClass("answers-text correct").attr('id', `correct`).text(correctAnswer);
+                            let correctAnswerP = $('<p>').addClass("answers-text correct").attr('id', `correct`).html(correctAnswer);
 
                             possibleAnswers.push(correctAnswerP)
 
