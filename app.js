@@ -1,4 +1,8 @@
+
 $(() => {
+
+$('#bar-top').hide()
+
 
 console.log ("app.js is linked")
 
@@ -12,6 +16,7 @@ $('.reset').on('click', ()=> {
 
 const triviaGame = () => {
        console.log ("game is on")
+       $('#bar-top').show()
         
        const promise = $.ajax({
               url: "https://opentdb.com/api.php?amount=100&category=23"
@@ -225,8 +230,6 @@ const triviaGame = () => {
               };
        }
 
-triviaGame(); 
-
 const endgame = () => {
        if (questionsAnswered!=10) {
               $('main').hide();
@@ -244,7 +247,30 @@ const endgame = () => {
 
 }
 
-setTimeout(endgame, 60000)
+$('.play-game').on ('click', event => {
+       event.preventDefault(); 
+       const timeLimit = $('.difficulty-level').val()
+       if (timeLimit==45000) {
+              $('#end-time').html("0:45")
+              $('#bar-top').toggleClass('bar-top-hard')
+       }
+       if (timeLimit==60000) {
+              $('#end-time').html("1:00")
+              $('#bar-top').toggleClass('bar-top-regular')
+       }
+       if (timeLimit==120000) {
+              $('#end-time').html("2:00")
+              $('#bar-top').toggleClass('bar-top-easy')
+       }
+       console.log (timeLimit)
+       triviaGame(); 
+       setTimeout(endgame, timeLimit)
+
+})
+
+
+ 
+
 
 }); 
 

@@ -47,11 +47,44 @@ h2 {
 #bar-top { 
     margin: 0 auto; 
     height: 20px; 
-    background: #EF7A85; 
+    position: absolute; 
+    
+     
+}
+
+.bar-top-easy { 
+    margin: 0 auto; 
+    height: 20px; 
+    background: #B5EAD7; 
     position: absolute; 
     animation: linear; 
+    animation-direction: reverse;
+    animation-name: progress;
+    animation-duration: 120s;
+    animation-delay: 2s; 
+}
+
+.bar-top-regular { 
+    margin: 0 auto; 
+    height: 20px; 
+    background: #C7CEEA; 
+    position: absolute; 
+    animation: linear; 
+    animation-direction: reverse;
     animation-name: progress;
     animation-duration: 60s;
+    animation-delay: 2s; 
+}
+
+.bar-top-hard { 
+    margin: 0 auto; 
+    height: 20px; 
+    background: #FFB7B2; 
+    position: absolute; 
+    animation: linear; 
+    animation-direction: reverse;
+    animation-name: progress;
+    animation-duration: 45s;
     animation-delay: 2s; 
 }
 
@@ -130,6 +163,7 @@ main {
     margin: 20px auto;  
     visibility: hidden; 
 }
+
 .final-message p {
     font-size: 1.5rem; 
     padding: 10px 0 10px 0; 
@@ -138,13 +172,25 @@ main {
 }
 
 footer {
-    display: flex; 
-    flex-direction: row; 
+    display: flex;
     justify-content: center;
 }
+.game-control-section {
+    width: 70%; 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-evenly;
+}
 
-.reset {
-    position: fixed; 
+.difficulty-level {
+    width: 150px; 
+    font-size: 1.2rem; 
+    padding: 5px 10px 5px 10px; 
+
+}
+button {
+    background: #DFF8EB; 
+    width: 150px; 
     font-size: 1.2rem; 
     padding: 5px 10px 5px 10px; 
 }
