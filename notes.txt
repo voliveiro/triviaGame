@@ -1,0 +1,4 @@
+1. Boolean, change the variable value as you go through
+2. Jquery disable button
+3. Attach a container id to limit scope;. 
+4. look at API documentation for special characters to see what's going on 
