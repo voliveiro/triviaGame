@@ -1,8 +1,6 @@
-
 $(() => {
 
 $('#bar-top').hide()
-
 
 console.log ("app.js is linked")
 
@@ -113,15 +111,11 @@ const triviaGame = () => {
                             questionDiv.append(answerDiv)
 
                             $('main').append(questionDiv)
-
-
                      }
 
                      //give "active" class to first questionDiv 
 
                      document.querySelector('.question-container').classList.add("active")
-
-                     
 
                      //visiually indicate if right or wrong answer has been clicked
 
@@ -132,7 +126,6 @@ const triviaGame = () => {
                      for (let i=0; i<qnContainerNodes.length; i++){
                      let answerSection=qnContainerNodes[i].querySelector('.answer-container');
                      answerContainerArray.push(answerSection)
-
                      }
 
                      //a function to display the final message after 10 questions have been answered. The setTimeOut function allows the player to see whether he/she got the last answered correct or wrong. 
@@ -148,24 +141,16 @@ const triviaGame = () => {
                                           $('.carousel-control-next').hide();
                                           $('.final-message').append(endMessage);
                                           $('.final-message').css('visibility', 'visible'); 
-                                          $('#bar-top').hide(); 
-                                           
+                                          $('#bar-top').hide();              
                                    }
-
                             }, 2000);
                             
                      }
-
                      
-
                      //to keep track of correct answers 
                      let correctAnswerNumber=0
 
-                     
-
                      //highlight green if correct answer picked
-
-                     
 
                      for (let i=0; i<answerContainerArray.length; i++) { 
                      
@@ -174,7 +159,6 @@ const triviaGame = () => {
                                    correctAnswerNumber++
                                    console.log (questionsAnswered)
                                    document.querySelector('.score').innerHTML=correctAnswerNumber; 
-                                   
                                    const newP = document.createElement('p'); 
                                    newP.textContent=document.querySelector('.correct').textContent
                                    newP.style.background='rgb(138, 250, 138)'
@@ -187,10 +171,7 @@ const triviaGame = () => {
                                    questionsAnswered ++
                                    console.log (questionsAnswered, "questions answered")
                                    gameDone(); 
-
-                            })
-                     
-                            
+                            })    
                      };
 
                      //higlight red if wrong answer picked 
@@ -211,18 +192,10 @@ const triviaGame = () => {
                                           questionsAnswered ++
                                           console.log (questionsAnswered, "questions answered")
                                           gameDone(); 
-
                                    }); 
-
                             }
-
-                            
-
-              
                      }
 
-                     
-              
                      
                      
               }),
@@ -245,7 +218,6 @@ const endgame = () => {
        } else {
               console.log ("Do nothing")
        }
-       
 
 }
 
@@ -269,10 +241,6 @@ $('.play-game').on ('click', event => {
        setTimeout(endgame, timeLimit)
 
 })
-
-
- 
-
 
 }); 
 
