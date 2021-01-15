@@ -71,8 +71,10 @@ for (let i=0; i<answerContainerArray.length; i++) {
  
 ## Unit 1 Post Mortem
 
-### What habits did I use during this unit that helped me?
+#### What habits did I use during this unit that helped me?
+- Frequently testing my project. Playing the game I built repeatedly helped me to identify bugs/ problems I needed to fix. Bringing others in to help me test my work also helped me to identify bugs that I wouldn't otherwise have noticed. 
 
-### What habits did I have during this unit that I can improve on?
+#### What habits did I have during this unit that I can improve on?
+- More a skill than a habit: I could improve my familiarity with CSS and JQuery. 
 
-### How is the overall level of the course during this unit? (instruction, course materials, etc.)
+#### How is the overall level of the course during this unit? (instruction, course materials, etc.)
