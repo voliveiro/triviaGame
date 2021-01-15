@@ -40,10 +40,35 @@ const endMessage = $('<p>').addClass('end-message')
 
 #### What in my code and program design in the project went well? Is there anything I would do the same next time?
 
-For each, please include code examples.
+- One thing I struggled with was changing the visibility of / removing alternative answers once a player clicks on one of the answers. I took a different approach - and simply replicated the content in a new element. This reduced the complexity of what I was trying to achieve for the user.  (Notice that I use .remove() on the existing elements containing answers). Lesson: don't make things unnecessarily complex. 
 
-Code snippet up to 20 lines.
-Code design documents or architecture drawings / diagrams.
+```
+for (let i=0; i<answerContainerArray.length; i++) { 
+                     
+                            answerContainerArray[i].querySelector('.correct').addEventListener('click', function() {
+                                   //increasing score
+                                   correctAnswerNumber++
+                                   console.log (questionsAnswered)
+                                   document.querySelector('.score').innerHTML=correctAnswerNumber; 
+                                   const newP = document.createElement('p'); 
+                                   newP.textContent=document.querySelector('.correct').textContent
+                                   newP.style.background='rgb(138, 250, 138)'
+                                   
+                                   let allPs = answerContainerArray[i].querySelectorAll('.answers-text')
+                                   for (let k=0; k<allPs.length; k++) {
+                                          allPs[k].remove()
+                                   }
+                                   answerContainerArray[i].appendChild(newP)
+                                   questionsAnswered ++
+                                   console.log (questionsAnswered, "questions answered")
+                                   gameDone(); 
+
+                            })
+```
+- I appreciated the functionality that Twitter Bootstrap allowed when I was designing the carousel. Using what was already available helped to speed up development of the game. 
+
+
+ 
 Unit 1 Post Mortem
 What habits did I use during this unit that helped me?
 What habits did I have during this unit that I can improve on?
