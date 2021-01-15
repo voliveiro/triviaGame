@@ -78,3 +78,5 @@ for (let i=0; i<answerContainerArray.length; i++) {
 - More a skill than a habit: I could improve my familiarity with CSS and JQuery. 
 
 #### How is the overall level of the course during this unit? (instruction, course materials, etc.)
+- Probably just the right amount. I was helped by the fact that I already had familiarity with programming (Python, JavaScript, HTML and CSS). I learned a bit more CSS, and I learned JQuery in this unit. 
+- I did have to take extra time to play around with and learn Bootstrap. It was a worthwhile investment of time, given how useful Bootstrap can be 
