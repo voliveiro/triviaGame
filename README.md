@@ -69,7 +69,10 @@ for (let i=0; i<answerContainerArray.length; i++) {
 
 
  
-Unit 1 Post Mortem
-What habits did I use during this unit that helped me?
-What habits did I have during this unit that I can improve on?
-How is the overall level of the course during this unit? (instruction, course materials, etc.)
+## Unit 1 Post Mortem
+
+### What habits did I use during this unit that helped me?
+
+### What habits did I have during this unit that I can improve on?
+
+### How is the overall level of the course during this unit? (instruction, course materials, etc.)
