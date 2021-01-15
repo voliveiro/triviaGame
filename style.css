@@ -60,7 +60,7 @@ h2 {
     animation: linear; 
     animation-direction: reverse;
     animation-name: progress;
-    animation-duration: 120s;
+    animation-duration: 118s;
     animation-delay: 2s; 
 }
 
@@ -72,7 +72,7 @@ h2 {
     animation: linear; 
     animation-direction: reverse;
     animation-name: progress;
-    animation-duration: 60s;
+    animation-duration: 58s;
     animation-delay: 2s; 
 }
 
@@ -84,7 +84,7 @@ h2 {
     animation: linear; 
     animation-direction: reverse;
     animation-name: progress;
-    animation-duration: 45s;
+    animation-duration: 43s;
     animation-delay: 2s; 
 }
 
