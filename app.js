@@ -88,20 +88,34 @@ const triviaGame = () => {
 
                             }
 
-                            //shuffling possibleAnswers
+                            //shuffling possibleAnswers using Fisher-Yates algorithm
 
-                            let currentIndex = possibleAnswers.length, temporaryValue, randomIndex;
+                            //we start with the end of the array
+                            let currentIndex = possibleAnswers.length; 
+
+                            //declare two additional variables
+                            let temporaryValue
+                            let randomIndex;
                             
                             // While there remain elements to shuffle...
-                            while (0 !== currentIndex) {
+                            while (currentIndex !== 0) {
                             
                                    // Pick a remaining element...
                                    randomIndex = Math.floor(Math.random() * currentIndex);
+
+                                   //reduce currentIndex by 1
                                    currentIndex -= 1;
                             
                                    // And swap it with the current element.
+
+                                   //store the current item in the array
                                    temporaryValue = possibleAnswers[currentIndex];
+
+                                   //assign its place to the randomly picked element
                                    possibleAnswers[currentIndex] = possibleAnswers[randomIndex];
+
+                                   //the next random element is the element stored in the temporary value
+
                                    possibleAnswers[randomIndex] = temporaryValue;
                             }
                      
